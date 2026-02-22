@@ -23,6 +23,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 dir('app') {
+                    bat 'dir'
                     bat 'docker build -f Dockerfile -t  %DOCKERHUB%/%IMAGE%:%BUILD_NUMBER% .'
                 }
             }
