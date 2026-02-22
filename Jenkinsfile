@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     // Define namespace mapping here
-                    def NAMESPACE_MAP = [dev:'dec', test:'test', prod:'prod']
+                    def NAMESPACE_MAP = [dev:'dev', test:'test', prod:'prod']
         
                     // Select namespace based on ENV parameter
                     def ns = NAMESPACE_MAP[params.ENV]
