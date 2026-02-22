@@ -6,9 +6,15 @@ service:
 image:
   tag: "1.0.0"
 
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 70
+
 resources:
   limits:
-    cpu: 500m
+    cpu: 100m
     memory: 512Mi
   requests:
     cpu: 250m
