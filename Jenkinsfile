@@ -22,7 +22,8 @@ pipeline {
 
         stage('Build Image') {
             steps {
-                bat 'docker build -t ${env.DOCKER_IMAGE}:${env.BUILD_NUMBER} ./app'
+                cd app
+                bat 'docker build -t $DOCKERHUB/$IMAGE:$BUILD_NUMBER .'
             }
         }
 
