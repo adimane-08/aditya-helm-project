@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Deploy via Helm') {
             steps {
-                \\\ script {
+                script {
                         def ns = NAMESPACE_MAP[params.ENV]
                         bat "kubectl get ns ${ns} || kubectl create ns ${ns}"
                         bat """
