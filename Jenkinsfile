@@ -37,16 +37,17 @@ pipeline {
                 }
             }
         }
-
         stage('Deploy via Helm') {
             steps {
-                bat """
-                helm upgrade --install aditya-app ./helm/aditya-app \
-                -f helm/aditya-app/values-${params.ENV}.yaml \
-                --set image.tag=${BUILD_NUMBER}
-                --namespace ${params.ENV}
-                """
-            }
-        }
+                \\\ script {
+                        def ns = NAMESPACE_MAP[params.ENV]
+                        bat "kubectl get ns ${ns} || kubectl create ns ${ns}"
+                        bat """
+                        helm upgrade --install aditya-app ./helm/aditya-app ^
+                        -f helm/aditya-app/values-${params.ENV}.yaml ^
+                        --set image.tag=%BUILD_NUMBER% ^
+                        --namespace ${ns}
+                        """
+}
     }
 }
