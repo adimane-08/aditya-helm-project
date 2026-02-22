@@ -32,7 +32,7 @@ pipeline {
         stage('Push Image') {
             steps {
                  withDockerRegistry([ credentialsId: 'token-for-kubernetes-repo', url: '' ]) {
-                    bat 'docker push $DOCKERHUB/$IMAGE:${BUILD_NUMBER}'
+                    bat 'docker push %DOCKERHUB%/%IMAGE%:%BUILD_NUMBER%'
                 }
             }
         }
