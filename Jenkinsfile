@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'feature', url: 'https://github.com/adimane-08/k8s-.git', credentialsId: 'code-for-k8s'
+                git branch: 'feature', url: 'https://github.com/adimane-08/aditya-helm-project.git', credentialsId: 'code-for-k8s'
             }
         }
 
