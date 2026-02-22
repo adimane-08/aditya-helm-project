@@ -11,6 +11,7 @@ pipeline {
         IMAGE = 'nginx-probe'
         TAG = '1.29'
         DOCKER_IMAGE = "adimane0801/nginx-probe"
+        NAMESPACE_MAP = [dev:'dec', test:'test', prod:'prod']
     }
 
     stages {
