@@ -11,8 +11,6 @@ pipeline {
         IMAGE = 'nginx-probe'
         TAG = '1.29'
         DOCKER_IMAGE = "adimane0801/nginx-probe"
-        NAMESPACE_MAP = [dev:'dec', test:'test', prod:'prod']
-    }
 
     stages {
         stage('Checkout') {
@@ -40,15 +38,23 @@ pipeline {
         stage('Deploy via Helm') {
             steps {
                 script {
-                        def ns = NAMESPACE_MAP[params.ENV]
-                        bat "kubectl get ns ${ns} || kubectl create ns ${ns}"
-                        bat """
-                        helm upgrade --install aditya-app ./helm/aditya-app ^
-                        -f helm/aditya-app/values-${params.ENV}.yaml ^
-                        --set image.tag=%BUILD_NUMBER% ^
-                        --namespace ${ns}
-                        """
-}
+                    // Define namespace mapping here
+                    def NAMESPACE_MAP = [dev:'dec', test:'test', prod:'prod']
+        
+                    // Select namespace based on ENV parameter
+                    def ns = NAMESPACE_MAP[params.ENV]
+        
+                    // Create namespace if it doesn't exist
+                    bat "kubectl get ns ${ns} || kubectl create ns ${ns}"
+        
+                    // Helm deploy
+                    bat """
+                    helm upgrade --install aditya-app ./helm/aditya-app ^
+                    -f helm/aditya-app/values-${params.ENV}.yaml ^
+                    --set image.tag=%BUILD_NUMBER% ^
+                    --namespace ${ns}
+                    """
+        }
     }
 }
     }
