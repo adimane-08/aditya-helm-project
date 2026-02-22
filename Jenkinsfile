@@ -11,6 +11,7 @@ pipeline {
         IMAGE = 'nginx-probe'
         TAG = '1.29'
         DOCKER_IMAGE = "adimane0801/nginx-probe"
+    }
 
     stages {
         stage('Checkout') {
@@ -59,6 +60,6 @@ pipeline {
 }
     }
     }
-}
+
 
 
