@@ -43,6 +43,7 @@ pipeline {
                 helm upgrade --install aditya-app ./helm/aditya-app \
                 -f helm/aditya-app/values-${params.ENV}.yaml \
                 --set image.tag=${BUILD_NUMBER}
+                --namespace ${params.ENV}
                 """
             }
         }
