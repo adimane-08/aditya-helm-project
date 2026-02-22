@@ -1,0 +1,15 @@
+replicaCount: 1
+
+image:
+  tag: "1.0.0-dev"
+
+resources:
+  limits:
+    cpu: 150m
+    memory: 200Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+env:
+  LOG_LEVEL: "debug"

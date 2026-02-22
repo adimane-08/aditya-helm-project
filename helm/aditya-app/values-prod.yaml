@@ -1,0 +1,18 @@
+replicaCount: 3
+
+service:
+  type: ClusterIP
+
+image:
+  tag: "1.0.0"
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+env:
+  LOG_LEVEL: "warn"
