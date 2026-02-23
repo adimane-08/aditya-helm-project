@@ -14,10 +14,10 @@ autoscaling:
 
 resources:
   limits:
-    cpu: 100m
+    cpu: 150m
     memory: 512Mi
   requests:
-    cpu: 250m
+    cpu: 100m
     memory: 256Mi
 
 env:
